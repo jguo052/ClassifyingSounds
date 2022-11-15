@@ -140,7 +140,7 @@ with recordblock:
                 # brief loading visual labeled with 'Thinking...'
                 with st.spinner('Thinking...'):
                     # load pretrained CNN model (keras)
-                    model = load_model('model.h5')
+                    model = load_model('mfcc_model.h5')
                     
                     # extract MFCCs from stored audio signal
                     mfcc = extract_mfccs(st.session_state['audio'])
@@ -152,12 +152,14 @@ with recordblock:
                     # and print to user
                     class_num = np.argmax(probs)
                     pred = labels[class_num]
-                st.write(f'*That sounds like a {pred} to me!*')
+                    
+                    # store label (as index and word) and probabilities
+                    st.session_state['pred_index'] = class_num
+                    st.session_state['pred'] = pred
+                    st.session_state['probs'] = probs[0].round(2)
+                    
+                st.write(f"*That sounds like a {st.session_state['pred']} to me!*")
                 
-                # store label (as index and word) and probabilities
-                st.session_state['pred_index'] = class_num
-                st.session_state['pred'] = pred
-                st.session_state['probs'] = probs[0].round(2)
         
     
 
