@@ -1,5 +1,9 @@
 # folder containing audio files
 audiofiles/
+data/
+
+# generated recording from streamlit
+recording.wav
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
