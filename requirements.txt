@@ -28,7 +28,6 @@ inflection==0.5.1
 keras==2.10.0
 Keras-Preprocessing==1.1.2
 libclang==14.0.6
-librosa @ file:///home/conda/feedstock_root/build_artifacts/librosa_1656336149289/work
 llvmlite==0.39.1
 mccabe==0.6.1
 mistune==0.8.4
