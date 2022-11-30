@@ -52,7 +52,13 @@ First we needed to make sure the audio data were all of the same size. This guar
 
 The two kinds of images we extract from our audio files are called *Mel Frequency Cepstral Coefficients (MFCCs)* and *Mel Spectrograms*.
 
+![alt text](images/cough_mfccs.png)
+
+![alt text](images/cough_melspec.png)
+
 We created two neural networks, one for each kind of image. Both models performed fairly similarly and the accuracy scores on the validation sets generally stuck between 85% and 87% from epoch to epoch. The MFCCs model seemed a little more reliable at the end of it all and produced more consistent results across the different classes. This can be demonstrated by the confusion matrices below. 
+
+![alt text](images/confusion_matrix.png)
 
 We see that the first matrix corresponding to the MFCCs data has the most trouble with distinguishing between coughs and throat clears, but besides that, the numbers off the diagonal are generally low. On the other hand, the values off the diagonal are consistently higher for the Mel Spectrogram confusion matrix.
 
@@ -61,7 +67,13 @@ With our MFFCs model we generated predictions on the test set and analyzed the r
 - speaker data that was provided alongside the audio files
 - prediction confidence given by the prediction probabilities
 
-The main takeaways were that the information about the speaker (gender, age, language) had little relationship to how well the model performed. This was expected, but worth looking into as gender, age, and language do have influence on how a person sounds. As for prediction confidence, we noticed that the model more misclassified coughs with notably higher levels of confidence than the other sounds. It performed quite well on laughters and sighs and the confidence levels for misclassifying these sounds tended to be lower.
+The main takeaways were that the information about the speaker (gender, age, language) had little relationship to how well the model performed. This was expected, but worth looking into as gender, age, and language do have influence on how a person sounds.
+
+![Sex has no noticeable influence on the model's predictive ability](images/sex_predictions.png)
+
+As for prediction confidence, we noticed that the model misclassified more coughs with notably higher levels of confidence than the other sounds. It performed quite well on laughters and sighs and the confidence levels for misclassifying these sounds tended to be lower.
+
+![Coughs tend to be predicted incorrectly with more confidence](images/avg_conf_preds.png)
 
 ---
 
