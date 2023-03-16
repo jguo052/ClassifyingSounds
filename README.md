@@ -38,9 +38,11 @@ To obtain the same production model, one should run the files in the `code` dire
 
 Note that files `03` and `04` were run on [Kaggle](https://www.kaggle.com/) to make use of their public GPU to train the convolutional neural networks (CNN). This means to follow along with these two notebooks, you will need to update the relative paths of any files read into or saved from `03` and `04`.
 
-Lastly, there is a file that generates a *Streamlit* application in the main directory titled `streamlit.py`. If you have the Streamlit library installed, you can access this app by navigating to this project's directory on your local machine in the terminal and then entering `streamlit run streamlit.py`. This will open up an interactive page where you can try out the model by creating your own short recordings.
+[Lastly, there is a file that generates a *Streamlit* application in the main directory titled `streamlit.py`. If you have the Streamlit library installed, you can access this app by navigating to this project's directory on your local machine in the terminal and then entering `streamlit run streamlit.py`. This will open up an interactive page where you can try out the model by creating your own short recordings.]: <>
 
-Beyond the most typical data science libraries, what you will need to follow along are `librosa` for extracting audio features, `tensorflow` for training neural networks, and `streamlit` for interacting with a live version of the model.
+Beyond the most typical data science libraries, what you will need to follow along are `librosa` for extracting audio features and `tensorflow` for training neural networks.
+
+[, and `streamlit` for interacting with a live version of the model.]: <>
 
 ---
 
@@ -50,7 +52,7 @@ One way to create a classification model on short audio files is by converting t
 
 First we needed to make sure the audio data were all of the same size. This guarantees that the image data we extract from these audio files are also the same size and can be fed into the neural network without any issue. This was accomplished by extracting the audio signal from each file using `librosa` and then trimming and padding that signal to six seconds.
 
-The two kinds of images we extract from our audio files are called *Mel Frequency Cepstral Coefficients (MFCCs)* and *Mel Spectrograms*.
+The two kinds of images we extract from our audio files are called *Mel Frequency Cepstral Coefficients (MFCCs)* and *Mel Spectrograms*. Roughly speaking, MFCCs capture sound information most relevant to human speach. On the other hand, Mel spectrograms filter out audio data in a way that mimics how humans perceive sound (in a logarithmic scale).
 
 ![alt text](images/cough_mfccs.png)
 
@@ -61,6 +63,8 @@ We created two neural networks, one for each kind of image. Both models performe
 ![alt text](images/confusion_matrix.png)
 
 We see that the first matrix corresponding to the MFCCs data has the most trouble with distinguishing between coughs and throat clears, but besides that, the numbers off the diagonal are generally low. On the other hand, the values off the diagonal are consistently higher for the Mel Spectrogram confusion matrix.
+
+![alt text](images/melspec_confusion_matrix.jpg)
 
 With our MFFCs model we generated predictions on the test set and analyzed the results. For this analysis on the test set we focused on two things:
 
